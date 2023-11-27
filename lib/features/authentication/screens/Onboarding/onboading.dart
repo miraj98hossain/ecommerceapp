@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/authentication/controllers/OnboardingScreenController.dart';
-
-import 'package:t_store/features/authentication/screens/widgets/indicator.dart';
-import 'package:t_store/features/authentication/screens/widgets/nextButton.dart';
-import 'package:t_store/features/authentication/screens/widgets/onboardingpage.dart';
-import 'package:t_store/features/authentication/screens/widgets/skipbutton.dart';
+import 'package:t_store/features/authentication/screens/Onboarding/widgets/indicator.dart';
+import 'package:t_store/features/authentication/screens/Onboarding/widgets/nextButton.dart';
+import 'package:t_store/features/authentication/screens/Onboarding/widgets/onboardingpage.dart';
+import 'package:t_store/features/authentication/screens/Onboarding/widgets/skipbutton.dart';
 
 import 'package:t_store/utils/constants/image_strings.dart';
 
