@@ -1,5 +1,5 @@
-import 'package:ecommerceapp/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:t_store/utils/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
