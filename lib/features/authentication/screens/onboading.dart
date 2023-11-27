@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/authentication/controllers/OnboardingScreenController.dart';
 
 import 'package:t_store/features/authentication/screens/widgets/indicator.dart';
 import 'package:t_store/features/authentication/screens/widgets/nextButton.dart';
@@ -14,10 +16,15 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OnboardingScreenController());
     return SafeArea(
       child: Scaffold(
         body: Stack(children: [
           PageView(
+            controller: controller.pageController,
+            onPageChanged: (value) {
+              controller.udatePageIndicator(value);
+            },
             children: const [
               OnBoardingPage(
                 image: TImages.onBoardingImage1,
