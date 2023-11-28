@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/authentication/screens/Sign_Up/verify_email.dart';
 import 'package:t_store/features/authentication/screens/Sign_Up/widgets/singup_checkbox.dart';
 import 'package:t_store/features/authentication/screens/log_in/widgets/divider.dart';
 import 'package:t_store/features/authentication/screens/log_in/widgets/third_party_signin_Icon.dart';
@@ -92,7 +95,9 @@ class SignUpForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAll(const VerifyEmail());
+              },
               child: const Text(TTexts.createAccount),
             ),
           ),
