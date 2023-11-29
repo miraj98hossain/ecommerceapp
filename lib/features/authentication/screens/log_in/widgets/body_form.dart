@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/authentication/screens/Sign_Up/sign_up_screen.dart';
+import 'package:t_store/features/authentication/screens/log_in/forgot_password.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -55,7 +56,9 @@ class BodyForm extends StatelessWidget {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(const ForgotPassword());
+                },
                 child: const Text(TTexts.forgetPassword),
               ),
             ],
