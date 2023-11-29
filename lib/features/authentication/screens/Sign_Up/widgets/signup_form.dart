@@ -95,7 +95,7 @@ class SignUpForm extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                Get.offAll(const VerifyEmail());
+                Get.offAll(VerifyEmail());
               },
               child: const Text(TTexts.createAccount),
             ),

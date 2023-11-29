@@ -7,7 +7,16 @@ import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class VerifyEmail extends StatelessWidget {
-  const VerifyEmail({super.key});
+  VerifyEmail(
+      {super.key,
+      this.headline,
+      this.emailAdd,
+      this.subTitle,
+      this.buttonName});
+  String? headline = TTexts.confirmEmail;
+  String? emailAdd = TTexts.supportMailaddress;
+  String? subTitle = TTexts.confirmEmailSubTitle;
+  String? buttonName = TTexts.tContinue;
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +44,21 @@ class VerifyEmail extends StatelessWidget {
                       height: TSizes.spaceBtwItems,
                     ),
                     Text(
-                      TTexts.confirmEmail,
+                      headline!,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(
                       height: TSizes.spaceBtwItems,
                     ),
                     Text(
-                      TTexts.supportMailaddress,
+                      emailAdd!,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(
                       height: TSizes.spaceBtwItems,
                     ),
                     Text(
-                      TTexts.confirmEmailSubTitle,
+                      subTitle!,
                       style: Theme.of(context).textTheme.bodySmall,
                       textAlign: TextAlign.center,
                     ),
@@ -62,7 +71,7 @@ class VerifyEmail extends StatelessWidget {
                         onPressed: () {
                           Get.offAll(const VerifySuccess());
                         },
-                        child: const Text(TTexts.tContinue),
+                        child: Text(buttonName!),
                       ),
                     ),
                     const SizedBox(

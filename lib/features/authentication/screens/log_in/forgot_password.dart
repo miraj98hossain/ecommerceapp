@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/authentication/screens/Sign_Up/verify_email.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 
@@ -12,6 +13,7 @@ class ForgotPassword extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
               padding: const EdgeInsets.all(TSizes.defaultSpace / 4),
@@ -61,7 +63,14 @@ class ForgotPassword extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(VerifyEmail(
+                        headline: TTexts.changeYourPasswordTitle,
+                        emailAdd: "abc@gmail.com",
+                        subTitle: TTexts.changeYourPasswordSubTitle,
+                        buttonName: TTexts.done,
+                      ));
+                    },
                     child: const Text(TTexts.submit),
                   ),
                 ),
