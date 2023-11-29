@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/bottom_navigation_bar.dart';
 import 'package:t_store/features/authentication/screens/Sign_Up/sign_up_screen.dart';
 import 'package:t_store/features/authentication/screens/log_in/forgot_password.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -69,7 +70,9 @@ class BodyForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.offAll(const ButtomNavigationBAr());
+              },
               child: const Text(TTexts.signIn),
             ),
           ),
