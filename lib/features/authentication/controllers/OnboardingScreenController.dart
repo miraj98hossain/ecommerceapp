@@ -10,8 +10,8 @@ class OnboardingScreenController extends GetxController {
     currentPageIndex.value = index;
   }
 
-  void dotNavigatorClick(index) {
-    currentPageIndex.value = index;
+  void dotNavigatorClick(double index) {
+    currentPageIndex.value = index.toInt();
     pageController.jumpTo(index);
   }
 

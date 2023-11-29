@@ -19,7 +19,9 @@ class Indicator extends StatelessWidget {
       left: TSizes.defaultSpace,
       child: SmoothPageIndicator(
         controller: controller.pageController,
-        onDotClicked: controller.dotNavigatorClick,
+        onDotClicked: (index) {
+          controller.dotNavigatorClick(index.toDouble());
+        },
         count: 3,
         effect: ExpandingDotsEffect(
             activeDotColor: dark ? TColors.light : TColors.dark, dotHeight: 6),
