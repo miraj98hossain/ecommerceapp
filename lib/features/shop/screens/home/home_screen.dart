@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/appbar.dart';
@@ -5,6 +6,7 @@ import 'package:t_store/features/shop/screens/home/widgets/circle_shape.dart';
 import 'package:t_store/features/shop/screens/home/widgets/popular_category_list.dart';
 import 'package:t_store/features/shop/screens/home/widgets/search_bar.dart';
 import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -51,9 +53,49 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              CarouselSlider.builder(
+                options: CarouselOptions(
+                    height: 400,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+                    scrollDirection: Axis.horizontal),
+                itemCount: 3,
+                itemBuilder:
+                    (BuildContext context, int itemIndex, int pageViewIndex) =>
+                        const PromoImage(image: TImages.promoBanner1),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class PromoImage extends StatelessWidget {
+  const PromoImage({super.key, required this.image});
+  final String image;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(TSizes.defaultSpace),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(TSizes.md)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(TSizes.md),
+        child: Image(
+            image: AssetImage(
+              image,
+            ),
+            fit: BoxFit.contain),
       ),
     );
   }
