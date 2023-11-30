@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+
+import 'package:t_store/features/shop/screens/home/widgets/appbar.dart';
+import 'package:t_store/features/shop/screens/home/widgets/circle_shape.dart';
+import 'package:t_store/features/shop/screens/home/widgets/popular_category_list.dart';
+import 'package:t_store/features/shop/screens/home/widgets/search_bar.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
+
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
+
 import 'package:t_store/utils/helpers/helper_functions.dart';
-import 'package:badges/badges.dart' as badges;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,51 +27,24 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   color: TColors.primary,
                   padding: const EdgeInsets.all(0),
-                  child: Stack(
+                  child: const Stack(
                     children: [
-                      Positioned(
-                        top: -140,
-                        right: -180,
-                        child: Container(
-                          height: 300,
-                          width: 300,
-                          padding: const EdgeInsets.all(0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(300),
-                              color: Colors.white.withOpacity(0.2)),
-                        ),
-                      ),
-                      Positioned(
-                        top: 80,
-                        right: -200,
-                        child: Container(
-                          height: 300,
-                          width: 300,
-                          padding: const EdgeInsets.all(0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(300),
-                              color: Colors.white.withOpacity(0.2)),
-                        ),
-                      ),
+                      CircleShape(top: -140, right: -180),
+                      CircleShape(top: 80, right: -200),
                       Column(
                         children: [
-                          const Appbar(),
-                          const SizedBox(
+                          SizedBox(
+                            height: TSizes.sm,
+                          ),
+                          HeaderAppbar(),
+                          SizedBox(
                             height: TSizes.spaceBtwItems,
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: TSizes.defaultSpace),
-                            height: 100,
-                            width: double.infinity,
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  prefixIcon: Icon(Iconsax.search_normal),
-                                  hintText: "Search In Store"),
-                            ),
-                          )
+                          HeaderSearchBar(),
+                          SizedBox(
+                            height: TSizes.spaceBtwSections,
+                          ),
+                          PopularCategoryList()
                         ],
                       )
                     ],
@@ -79,63 +55,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class Appbar extends StatelessWidget {
-  const Appbar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      actions: [
-        badges.Badge(
-          badgeStyle: const badges.BadgeStyle(padding: EdgeInsets.all(3)),
-          position: badges.BadgePosition.topEnd(top: 1, end: 4.5),
-          badgeContent: Text(
-            "10",
-            style: Theme.of(context).textTheme.labelSmall,
-          ),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Iconsax.shopping_bag),
-          ),
-        )
-      ],
-      automaticallyImplyLeading: false,
-      title: Row(children: [
-        Container(
-          margin: const EdgeInsets.only(right: 8),
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: const Image(image: AssetImage(TImages.user)),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              TTexts.homeAppbarTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium!
-                  .apply(color: TColors.grey),
-            ),
-            Text(
-              TTexts.homeAppbarSubTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .apply(color: TColors.grey),
-            ),
-          ],
-        ),
-      ]),
     );
   }
 }

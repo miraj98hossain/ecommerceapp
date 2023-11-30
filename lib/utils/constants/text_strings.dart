@@ -66,6 +66,7 @@ class TTexts {
 
   // -- Product
   static const String popularProducts = "Popular Products";
+  static const String popularCategories = "Popular Categories";
 
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
