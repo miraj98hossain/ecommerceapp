@@ -38,22 +38,33 @@ class PopularCategoryList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      padding: const EdgeInsets.all(TSizes.sm),
-                      margin: const EdgeInsets.only(right: TSizes.sm),
-                      decoration: const BoxDecoration(
-                        color: TColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Column(
-                        children: [
-                          Image(
-                            image: AssetImage(TImages.shoeIcon),
-                            fit: BoxFit.cover,
+                    Material(
+                      color: const Color.fromARGB(0, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(20),
+                      child: InkWell(
+                        onTap: () {},
+                        splashColor: Colors.black45,
+                        customBorder: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          padding: const EdgeInsets.all(TSizes.sm),
+                          margin: const EdgeInsets.all(TSizes.sm / 2),
+                          decoration: const BoxDecoration(
+                            color: TColors.white,
+                            shape: BoxShape.circle,
                           ),
-                        ],
+                          child: const Column(
+                            children: [
+                              Image(
+                                image: AssetImage(TImages.shoeIcon),
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     Container(
