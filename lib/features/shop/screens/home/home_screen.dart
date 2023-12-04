@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/shop/controller/home_controller.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/circle_shape.dart';
@@ -9,6 +12,7 @@ import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/constants/text_strings.dart';
 
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -17,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeController());
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -53,26 +58,70 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                    height: 400,
-                    aspectRatio: 16 / 9,
-                    viewportFraction: 0.8,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    scrollDirection: Axis.horizontal),
-                itemCount: 3,
-                itemBuilder:
-                    (BuildContext context, int itemIndex, int pageViewIndex) =>
-                        const PromoImage(image: TImages.promoBanner1),
+              Column(
+                children: [
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          controller.updateCarouselIndex(index);
+                        },
+                        initialPage: 0,
+                        enableInfiniteScroll: true,
+                        reverse: false,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        autoPlayAnimationDuration:
+                            const Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enlargeCenterPage: true,
+                        enlargeFactor: 0.3,
+                        scrollDirection: Axis.horizontal),
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int itemIndex,
+                            int pageViewIndex) =>
+                        PromoImage(
+                            image:
+                                "assets/images/products/promo-banner-${itemIndex + 1}.png"),
+                  ),
+                  Obx(
+                    () => DotsIndicator(
+                      dotsCount: 3,
+                      position: controller.carouselCurrentIndex.value,
+                      decorator: DotsDecorator(
+                        color: const Color.fromARGB(
+                            137, 131, 129, 129), // Inactive color
+                        activeColor: TColors.primary,
+                        activeSize: const Size(18.0, 9.0),
+                        activeShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      TTexts.popularProducts,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .apply(color: const Color.fromARGB(255, 32, 30, 30)),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("View All"),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -87,7 +136,6 @@ class PromoImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(TSizes.defaultSpace),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(TSizes.md)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(TSizes.md),
