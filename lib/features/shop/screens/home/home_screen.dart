@@ -3,6 +3,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/shop/controller/home_controller.dart';
+import 'package:t_store/features/shop/screens/home/widgets/Cart.dart';
 
 import 'package:t_store/features/shop/screens/home/widgets/appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/circle_shape.dart';
@@ -105,23 +106,34 @@ class HomeScreen extends StatelessWidget {
               Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    Text(
-                      TTexts.popularProducts,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .apply(color: const Color.fromARGB(255, 32, 30, 30)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          TTexts.popularProducts,
+                          style: Theme.of(context).textTheme.titleMedium!.apply(
+                              color: const Color.fromARGB(255, 32, 30, 30)),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text("View All"),
+                        ),
+                      ],
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("View All"),
-                    ),
+                    const CustomCart(
+                        priceDiscount: "78%",
+                        productName: "Green Nike Sprots Shoes",
+                        productPrice: "\$200",
+                        productImage: TImages.productImage1,
+                        brandName: "NIKE"),
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: TSizes.spaceBtwSections,
+              ),
             ],
           ),
         ),
