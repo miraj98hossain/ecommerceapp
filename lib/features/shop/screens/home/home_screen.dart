@@ -122,12 +122,20 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const CustomCart(
-                        priceDiscount: "78%",
-                        productName: "Green Nike Sprots Shoes",
-                        productPrice: "\$200",
-                        productImage: TImages.productImage1,
-                        brandName: "NIKE"),
+                    GridView.builder(
+                      itemCount: 4,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, mainAxisExtent: 294),
+                      itemBuilder: (context, index) => const CustomCart(
+                          priceDiscount: "78%",
+                          productName: "Green Nike Sprots Shoes",
+                          productPrice: "\$200",
+                          productImage: TImages.productImage1,
+                          brandName: "Nike"),
+                    ),
                   ],
                 ),
               ),

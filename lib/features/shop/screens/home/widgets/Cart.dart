@@ -21,8 +21,7 @@ class CustomCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(TSizes.defaultSpace),
-      height: 290,
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: 180,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -37,6 +36,9 @@ class CustomCart extends StatelessWidget {
       child: Column(
         children: [
           CartHeader(productImage: productImage, priceDiscount: priceDiscount),
+          const SizedBox(
+            height: 5,
+          ),
           CartBody(
               productName: productName,
               productPrice: productPrice,
@@ -67,10 +69,12 @@ class CartBody extends StatelessWidget {
         children: [
           Text(
             productName,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .apply(color: Colors.black),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.labelMedium!.apply(
+                  color: Colors.black,
+                  fontWeightDelta: 2,
+                ),
           ),
           const SizedBox(
             height: 5,
@@ -88,7 +92,7 @@ class CartBody extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 40,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
