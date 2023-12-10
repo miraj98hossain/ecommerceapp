@@ -10,78 +10,114 @@ class ShopScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-          appBar: const ShopAppbar(),
-          body: NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) {
-                return [
-                  SliverAppBar(
-                    pinned: true,
-                    floating: true,
-                    backgroundColor: Colors.red,
-                    expandedHeight: 440,
-                    flexibleSpace: Padding(
-                      padding: const EdgeInsets.all(TSizes.defaultSpace),
-                      child: ListView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        children: [
-                          const SearchField(),
-                          const SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "featured Brands",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .apply(fontWeightDelta: 2),
-                              ),
-                              SizedBox(
-                                height: 35,
-                                child: TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: const Color.fromARGB(
-                                        255, 213, 144, 167),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                  ),
-                                  child: const Text("View All"),
+      child: DefaultTabController(
+        length: 7,
+        child: Scaffold(
+            appBar: const ShopAppbar(),
+            body: NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverAppBar(
+                      pinned: true,
+                      floating: true,
+                      // backgroundColor: Colors.red,
+                      expandedHeight: 440,
+                      flexibleSpace: Padding(
+                        padding: const EdgeInsets.all(TSizes.defaultSpace),
+                        child: ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          children: [
+                            const SearchField(),
+                            const SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "featured Brands",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .apply(fontWeightDelta: 2),
                                 ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: TSizes.spaceBtwItems,
-                          ),
-                          GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 2.5,
-                                    mainAxisSpacing: 20,
-                                    crossAxisSpacing: 15,
-                                    crossAxisCount: 2),
-                            itemCount: 4,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return const FeaturedBrands();
-                            },
-                          )
-                        ],
+                                SizedBox(
+                                  height: 35,
+                                  child: TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 245, 212, 223),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                    ),
+                                    child: const Text("View All"),
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: TSizes.spaceBtwItems,
+                            ),
+                            GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 2.5,
+                                      mainAxisSpacing: 20,
+                                      crossAxisSpacing: 15,
+                                      crossAxisCount: 2),
+                              itemCount: 4,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return const FeaturedBrands();
+                              },
+                            )
+                          ],
+                        ),
                       ),
+                      bottom: const ShopTabbar(),
                     ),
-                  )
-                ];
-              },
-              body: Container())),
+                  ];
+                },
+                body: Container())),
+      ),
     );
   }
+}
+
+class ShopTabbar extends StatelessWidget implements PreferredSizeWidget {
+  const ShopTabbar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(9), topRight: Radius.circular(9)),
+        color: Colors.white,
+      ),
+      child: const TabBar(
+          indicatorColor: TColors.primary,
+          isScrollable: true,
+          tabs: [
+            Tab(text: "Sports"),
+            Tab(text: "Furnitures"),
+            Tab(text: "Electronics"),
+            Tab(text: "Clothes"),
+            Tab(text: "Jewellery"),
+            Tab(text: "Cosmetics"),
+            Tab(text: "Shoes"),
+          ]),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class FeaturedBrands extends StatelessWidget {
