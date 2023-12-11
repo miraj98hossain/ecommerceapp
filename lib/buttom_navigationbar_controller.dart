@@ -9,7 +9,7 @@ class ButtomNavigationbarController extends GetxController {
   final Rx<int> currentIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    const ShopScreen(),
+    ShopScreen(),
     const HeartScreen(),
     const ProfileScreen()
   ];
