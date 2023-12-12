@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               ClipPath(
-                clipper: customCliper(),
+                clipper: MyClipper(),
                 child: Container(
                   height: THelperFunctions.screenHeight() * 0.36,
                   width: double.infinity,
@@ -169,7 +169,7 @@ class PromoImage extends StatelessWidget {
   }
 }
 
-class customCliper extends CustomClipper<Path> {
+class MyClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
